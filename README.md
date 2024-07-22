@@ -1,6 +1,4 @@
-# omnidroid-evaluator
-
-USF COT5402 - Dynamic Programming Project
+# USF COT5402 - Dynamic Programming Project
 
 The goal of this project is to develop an algorithm that evaluates the cost to produce a robot. Designing and implementing the algorithm will require modeling the problem using dynammic programming.
 
@@ -10,11 +8,11 @@ A text file describing how to assemble the robot and the intermediate products r
 
 ### Parts
 
- **Sprockets** represent the main material component of robots and are used to attach parts to the robot.
+ * **Sprockets** represent the main material component of robots and are used to attach parts to the robot.
 
- **Basic parts** are constructed by combining together some number of sprockets in the correct configuration.
+ * **Basic parts** are constructed by combining together some number of sprockets in the correct configuration.
 
- **Intermediate parts** are constructed via their own assembly process.
+ * **Intermediate parts** are constructed via their own assembly process.
 
  The same part may be used multiple times in the construction of another part. Parts with larger ID values may be used as inputs to parts with smaller ID values.
 
