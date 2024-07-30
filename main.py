@@ -4,8 +4,8 @@ import sys
 from collections import defaultdict
 
 # Accept command line arguments - one input file at a time
-if len(sys.argv) != 1:
-    raise ValueError('Please provide one file name.')
+if len(sys.argv) != 2:
+    raise ValueError('Please provide one file name')
 
 inputParts = sys.argv[1]
 print("\nReading input file:", inputParts)
@@ -30,14 +30,33 @@ print("\ndependencies =", dependencies)
 print("\nsprockets =", sprockets)
     
 # set up data structures
-print("\nSetting up data structures")
-depend = defaultdict(list)
-used = defaultdict(list)
+print("\nSetting up dictionary")
+required = defaultdict(list)
 
 # fill dictionaries based on dependencies
 for i, j in dependencies:
-    depend[j].append(i)
-    used[i].append(j)
+    required[j].append(i)
 
 # initialize memoization table to store the cost of sprockets
 memotable = [-1] * n
+
+# define dynammic programming function 
+def calculate_sprockets(part):
+    if memotable[part] != -1:
+        return memotable[part]
+    if part not in required:
+        memotable[part] = sprockets[part]
+        return memotable[part]
+    memotable[part] = sprockets[part] + sum(calculate_sprockets(subpart) for subpart in required[part])
+    return memotable[part]
+
+# calculate total number of sprockets required
+print("\nCalculating total sprockets")
+total_sprockets = calculate_sprockets(n-1)
+
+# print results
+print("\nWriting the following results to 'output.txt':", total_sprockets)
+
+# write results to output file
+with open("output.txt", "w") as out:
+    out.write(str(total_sprockets))
