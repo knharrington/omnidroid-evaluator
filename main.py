@@ -3,7 +3,7 @@
 import sys
 from collections import defaultdict
 
-# Accept command line arguments - one input file at a time
+# accept command line arguments - one input file at a time
 if len(sys.argv) != 2:
     raise ValueError('Please provide one file name')
 
@@ -24,16 +24,16 @@ with open(inputParts, "r") as f:
     for _ in range(n):
         sprockets.append(int(f.readline().strip()))
 
-print("\nn =", n)
-print("\nm =", m)
+print("\nnumber of parts =", n)
+print("\nnumber of dependencies =", m)
 print("\ndependencies =", dependencies)
 print("\nsprockets =", sprockets)
     
-# set up data structures
+# set up dictionary
 print("\nSetting up dictionary")
 required = defaultdict(list)
 
-# fill dictionaries based on dependencies
+# fill dictionary based on dependencies
 for i, j in dependencies:
     required[j].append(i)
 
