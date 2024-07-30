@@ -24,13 +24,11 @@ with open(inputParts, "r") as f:
     for _ in range(n):
         sprockets.append(int(f.readline().strip()))
 
-print("\nnumber of parts =", n)
-print("\nnumber of dependencies =", m)
-print("\ndependencies =", dependencies)
-print("\nsprockets =", sprockets)
+print("\nThere are", n, "parts requiring sprockets =", sprockets)
+print("\nThere are", m, "dependencies =", dependencies)
     
 # set up dictionary
-print("\nSetting up dictionary")
+#print("\nSetting up dictionary")
 required = defaultdict(list)
 
 # fill dictionary based on dependencies
@@ -51,11 +49,11 @@ def calculate_sprockets(part):
     return memotable[part]
 
 # calculate total number of sprockets required
-print("\nCalculating total sprockets")
+#print("\nCalculating total sprockets")
 total_sprockets = calculate_sprockets(n-1)
 
 # print results
-print("\nWriting the following results to 'output.txt':", total_sprockets)
+print("\nThe total number of sprockets is in 'output.txt':", total_sprockets)
 
 # write results to output file
 with open("output.txt", "w") as out:
