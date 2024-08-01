@@ -10,7 +10,9 @@ Raul Garcia
 
 **1. How you can break down a problem instance of the omnidroid construction problem into one or more smaller instances? You may use sprocket[t] to represent the number of sprockets used for part t, and you may use req[t] and use[t] to represent the collection of all parts required to build part t and all parts that part t is used to build, respectively. Your answer should include how the solution to the original problem is constructed from the subproblems.**
 
-The parts required to build each part "t" can be represented by req[t]. We need to calculate the total number of sprockets that will be required to build all parts plus the number of sprockets required for part t itself. For example, if part t requires parts x, y, and z, then the problem has to be further broken down for x y and z. Therefore, the total number of sprockets that would be needed for part t is just the sum of the sprockets needed for each part plus sprockets for part t. Every part has it's own sprockets and adding this to the number of sprockets of its dependencies gives total number of sprockets.
+The omnidroid problem can be broken down into smaller instances by determining the total number of sprockets for each part, *t*, specifically by considering both the sprockets needed for part *t* and the ones needed for its dependencies. The parts required to build each part *t* can be represented by req[t]. To calculate the total number of sprockets that will be required to build part *t*, we can recursively calculate the number of sprockets for each part in req[*t*]: total_sprockets(*t*)=sprocket[*t*]+∑(subpart∈req[*t*]) * total_sprockets(subpart).
+
+For example, if part *t* requires parts *x*, *y*, and *z*, then the problem has to be further broken down for *x*, *y*, and *z*. Therefore, the total number of sprockets that would be needed for part *t* is the sum of the sprockets needed for each subpart plus sprockets for part *t*. Every part has it's own sprocket cost and adding these costs to the number of sprockets of its dependencies gives the total number of sprockets.
 
 **2. What is the base case of the omnidroid construction problem?**
 
