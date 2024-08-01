@@ -24,8 +24,8 @@ with open(inputParts, "r") as f:
     for _ in range(n):
         sprockets.append(int(f.readline().strip()))
 
-print("\nThere are", n, "parts requiring sprockets =", sprockets)
-print("\nThere are", m, "dependencies =", dependencies)
+print("\nThere are", n, "parts requiring sprockets:", sprockets)
+print("\nThere are", m, "dependencies:", dependencies)
     
 # set up dictionary
 #print("\nSetting up dictionary")
