@@ -16,6 +16,7 @@ with open(inputParts, "r") as f:
     n, m = map(int, f.readline().split())
     # figure out number of dependencies (m) between parts
     dependencies = []
+    # use _ since the variable is not used within the loop body
     for _ in range(m):
         i, j = map(int, f.readline().split())
         dependencies.append((i, j))
@@ -39,18 +40,21 @@ for i, j in dependencies:
 memotable = [-1] * n
 
 # define dynammic programming function 
-def calculate_sprockets(part):
+def num_sprockets(part):
+    # base case - already computed part
     if memotable[part] != -1:
         return memotable[part]
+    # base case - part not required by any other part
     if part not in required:
         memotable[part] = sprockets[part]
         return memotable[part]
-    memotable[part] = sprockets[part] + sum(calculate_sprockets(subpart) for subpart in required[part])
+    # recursize case - calculate total sprokets for part
+    memotable[part] = sprockets[part] + sum(num_sprockets(subpart) for subpart in required[part])
     return memotable[part]
 
 # calculate total number of sprockets required
 #print("\nCalculating total sprockets")
-total_sprockets = calculate_sprockets(n-1)
+total_sprockets = num_sprockets(n-1)
 
 # print results
 print("\nThe total number of sprockets is in 'output.txt':", total_sprockets)
