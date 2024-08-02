@@ -25,22 +25,22 @@ To recognize repeated problems for omnidroids, it would be best to use a diction
 ```
 initialize memotable with -1 for each part
 
-function calculate_sprockets(part):
-    if memotable[part] != -1:
+function num_sprockets(part):
+    if memotable[part] is not -1:
         return memotable[part]
     
-    if part not in required:
+    if part is not in required:
         memotable[part] = sprockets[part]
         return memotable[part]
     
     total_sprockets = sprockets[part]
     for subpart in required[part]:
-        total_sprockets += calculate_sprockets(subpart)
+        total_sprockets += num_sprockets(subpart)
     
     memotable[part] = total_sprockets
     return memotable[part]
 
-total_sprockets = calculate_sprockets(final_part)
+total_sprockets = num_sprockets(final_part)
 ```
 
 **5. What is the worst-case time complexity of your memoized algorithm?**
